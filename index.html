@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- JSDelivr 를 통해 Pretendard 폰트 추가 (JSDelivr는 오픈소스를 위해 운영되는 CDN(Content Delivery Network) 서비스) -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
+        crossorigin />
+    <title>HTTP Code With Cats</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <svg version="1.1" id="httpcat_logo" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="80px"
+                height="55px" viewBox="0 0 80 55" style="enable-background:new 0 0 80 55">
+                <path fill="#d0383e"
+                    d="M78.6,27.4H62.8V1.5c0-0.7-0.6-1.3-1.2-1.4c-0.6-0.2-1.4,0.1-1.8,0.6l-9.3,14.2H30L20.1,0.6c-0.4-0.5-1-0.8-1.6-0.6 c-0.6,0.2-0.9,0.8-0.9,1.4v25.9H1.4c-0.8,0-1.4,0.7-1.4,1.5c0,0.8,0.6,1.5,1.4,1.5h16.1v3.8l-9.8,0.2c0,0,0,0,0,0 c-0.8,0-1.4,0.5-1.4,1.3c0,0.8,0.6,1.4,1.4,1.4l9.8,0v4.1c0,7.7,9.9,13.8,22.6,13.8s22.6-6.1,22.6-13.8v-4.1l9.4-0.2c0,0,0,0,0,0 c0.8,0,1.4-0.5,1.4-1.3c0-0.8-0.6-1.4-1.4-1.4l-9.5,0v-3.8h15.8c0.8,0,1.4-0.7,1.4-1.5C80,28.1,79.4,27.4,78.6,27.4z M20.6,6.3 l7.5,11c0.3,0.4,0.6,0.6,1.1,0.6h22.1c0.5,0,1.1-0.3,1.4-0.7l7.1-10.7v20.8H48.3c-0.4,0-0.8,0.1-1,0.4L40,35.5l-7.8-7.7 c-0.3-0.3-0.6-0.4-1-0.4H20.6V6.3z M59.8,34.3l-7.4,0.2c0,0,0,0,0,0c-0.8,0-1.4,0.5-1.4,1.3c0,0.8,0.6,1.4,1.4,1.4l7.4,0v4.1 c0,5.9-9,10.8-19.6,10.8S20.6,47,20.6,41.2v-4.1l7.1-0.2c0,0,0,0,0,0c0.8,0,1.4-0.5,1.4-1.3c0-0.8-0.6-1.4-1.4-1.4l-7.1,0v-3.8h10.1 l8.4,8.2c0.3,0.3,0.6,0.3,1,0.3c0,0,0,0,0,0c0.4,0,0.8-0.1,1-0.3l7.9-8.2h10.9V34.3z">
+                </path>
+            </svg>
+        </div>
+        <h1>HTTP Code With Cats</h1>
+    </header>
+
+
+    <div id="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                    viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                    <path
+                        d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z">
+                    </path>
+                </svg></span>
+            <img src="#" loading="lazy">
+            <h2 id="code">200 OK</h2>
+            <p id="http_content">"요청이 성공적으로 처리되었습니다."<br><br>
+
+                웹 브라우저가 서버에 요청을 보내면, 서버는 요청을 확인한 뒤 정상적으로 결과를 반환합니다.
+                이때 가장 대표적으로 사용되는 성공 응답 코드가 바로 200 OK입니다.<br>
+
+                즉, 서버가 “문제없이 처리했어요!“라고 알려주는 신호입니다.</p>
+            <div class="comment-section">
+                <h3 class="comment-count">댓글 0개</h3>
+
+                <div class="comment-list">
+                    <p style="text-align:center; color:#888; padding: 20px 0;">아직 댓글이 없습니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="grid">
+        <div class="item" onclick="openModal(100)">
+            <img src="https://http.cat/images/100.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(101)">
+            <img src="https://http.cat/images/101.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(102)">
+            <img src="https://http.cat/images/102.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(103)">
+            <img src="https://http.cat/images/103.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(200)">
+            <img src="https://http.cat/images/200.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(201)">
+            <img src="https://http.cat/images/201.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(202)">
+            <img src="https://http.cat/images/202.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(203)">
+            <img src="https://http.cat/images/203.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(204)">
+            <img src="https://http.cat/images/204.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(205)">
+            <img src="https://http.cat/images/205.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(206)">
+            <img src="https://http.cat/images/206.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(207)">
+            <img src="https://http.cat/images/207.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(208)">
+            <img src="https://http.cat/images/208.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(214)">
+            <img src="https://http.cat/images/214.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(226)">
+            <img src="https://http.cat/images/226.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(300)">
+            <img src="https://http.cat/images/300.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(301)">
+            <img src="https://http.cat/images/301.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(302)">
+            <img src="https://http.cat/images/302.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(303)">
+            <img src="https://http.cat/images/303.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(304)">
+            <img src="https://http.cat/images/304.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(305)">
+            <img src="https://http.cat/images/305.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(307)">
+            <img src="https://http.cat/images/307.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(308)">
+            <img src="https://http.cat/images/308.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(400)">
+            <img src="https://http.cat/images/400.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(401)">
+            <img src="https://http.cat/images/401.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(402)">
+            <img src="https://http.cat/images/402.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(403)">
+            <img src="https://http.cat/images/403.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(404)">
+            <img src="https://http.cat/images/404.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(405)">
+            <img src="https://http.cat/images/405.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(406)">
+            <img src="https://http.cat/images/406.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(407)">
+            <img src="https://http.cat/images/407.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(408)">
+            <img src="https://http.cat/images/408.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(409)">
+            <img src="https://http.cat/images/409.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(410)">
+            <img src="https://http.cat/images/410.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(411)">
+            <img src="https://http.cat/images/411.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(412)">
+            <img src="https://http.cat/images/412.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(413)">
+            <img src="https://http.cat/images/413.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(414)">
+            <img src="https://http.cat/images/414.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(415)">
+            <img src="https://http.cat/images/415.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(416)">
+            <img src="https://http.cat/images/416.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(417)">
+            <img src="https://http.cat/images/417.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(418)">
+            <img src="https://http.cat/images/418.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(419)">
+            <img src="https://http.cat/images/419.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(420)">
+            <img src="https://http.cat/images/420.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(421)">
+            <img src="https://http.cat/images/421.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(422)">
+            <img src="https://http.cat/images/422.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(423)">
+            <img src="https://http.cat/images/423.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(424)">
+            <img src="https://http.cat/images/424.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(425)">
+            <img src="https://http.cat/images/425.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(426)">
+            <img src="https://http.cat/images/426.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(428)">
+            <img src="https://http.cat/images/428.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(429)">
+            <img src="https://http.cat/images/429.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(431)">
+            <img src="https://http.cat/images/431.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(444)">
+            <img src="https://http.cat/images/444.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(450)">
+            <img src="https://http.cat/images/450.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(451)">
+            <img src="https://http.cat/images/451.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(495)">
+            <img src="https://http.cat/images/495.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(496)">
+            <img src="https://http.cat/images/496.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(497)">
+            <img src="https://http.cat/images/497.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(498)">
+            <img src="https://http.cat/images/498.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(499)">
+            <img src="https://http.cat/images/499.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(500)">
+            <img src="https://http.cat/images/500.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(501)">
+            <img src="https://http.cat/images/501.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(502)">
+            <img src="https://http.cat/images/502.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(503)">
+            <img src="https://http.cat/images/503.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(504)">
+            <img src="https://http.cat/images/504.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(506)">
+            <img src="https://http.cat/images/506.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(507)">
+            <img src="https://http.cat/images/507.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(508)">
+            <img src="https://http.cat/images/508.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(509)">
+            <img src="https://http.cat/images/509.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(510)">
+            <img src="https://http.cat/images/510.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(511)">
+            <img src="https://http.cat/images/511.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(521)">
+            <img src="https://http.cat/images/521.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(522)">
+            <img src="https://http.cat/images/522.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(523)">
+            <img src="https://http.cat/images/523.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(525)">
+            <img src="https://http.cat/images/525.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(530)">
+            <img src="https://http.cat/images/530.jpg" loading="lazy">
+        </div>
+        <div class="item" onclick="openModal(599)">
+            <img src="https://http.cat/images/599.jpg" loading="lazy">
+        </div>
+    </div>
+<script src="/js/main.js"></script>
+</body>
+
+</html>

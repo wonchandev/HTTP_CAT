@@ -1,0 +1,100 @@
+body {
+    background-color: #1E1E1E;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    margin: 0;
+}
+
+header {
+    background-color: #141414;
+    padding: 20px;
+    color: #FFFFFF;
+    text-align: center;
+    border-bottom: 3px solid #484848;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 20px;
+}
+
+.grid img {
+    width: 100%;
+    border-radius: 8px;
+    background-color: #000000;
+    cursor: pointer;
+    object-fit: cover;
+    border: 1px solid #8e8e8e;
+    transition: transform 0.3s ease;
+}
+
+.grid img:hover {
+    transform: scale(1.05);
+}
+
+#modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000080;
+    z-index: 200;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+}
+
+.modal-content {
+    background-color: #1B1B21;
+    border-top: 23px solid #1B1B21;
+    color: white;
+    padding: 23px;
+    border-radius: 20px;
+    position: relative;
+    width: 80%;
+    height: 65vh;
+    max-height: 580px;
+    max-width: 560px;
+    box-shadow: 0 4px 8px 0 hsla(0, 0%, 0%, 0.2);
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff33 #ffffff0d;
+}
+.close-button {
+    position: sticky;
+    top: 0;
+    float: right;
+    font-size: 25px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.modal-content img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #8e8e8e;
+}
+
+.modal-content h2 {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #5C615C;
+}
+
+.modal-content p {
+    line-height: 1.6;
+}
+
+.comment-section {
+    margin-top: 60px;
+}
+
+.comment-count {
+    font-weight: 700;
+    margin-top: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #333333;
+}
