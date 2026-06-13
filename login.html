@@ -81,6 +81,30 @@
             </div>
         </form>
     </main>
+
+    <script>
+        // 폼 제출 시 유효성 검사 (validation)
+        // 폼 요소에 'submit' 이벤트를 등록한다.
+        document.querySelector('form').addEventListener('submit', function (e) {
+            // 아이디와 비밀번호 입력값을 가져온다.
+            const id = document.getElementById('id').value;
+            const pw = document.getElementById('password').value;
+
+            // [검사 1] 아이디 입력 확인
+            if (!id) {
+                alert('아이디를 입력해주세요.');
+                e.preventDefault(); // 폼 제출 막기
+                return;
+            }
+
+            // [검사 2] 비밀번호 입력 확인
+            if (!pw) {
+                alert('비밀번호를 입력해주세요.');
+                e.preventDefault();
+                return;
+            }
+        });
+    </script>
 </body>
 
 </html>

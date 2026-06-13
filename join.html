@@ -415,48 +415,91 @@
         // 폼 요소에 'submit' 이벤트를 등록한다.
         document.querySelector('form').addEventListener('submit', function (e) {
 
-            // 비밀번호와 비밀번호 확인 입력값을 미리 가져온다. (아래 두 곳에서 사용하기 때문)
+            // 입력값들을 가져온다.
+            const id = document.getElementById('id').value;
             const pw = document.getElementById('password').value;
             const pwc = document.getElementById('confirm-password').value;
+            const name = document.getElementById('name').value;
+            const emailId = document.querySelector('.emailId').value;
+            const emailDomainSelect = document.getElementById('email-domain').value;
+            const emailManual = document.getElementById('email-manual').value;
+            const phone = document.getElementById('phone').value;
 
             // [검사 1] 필수 입력 항목 빈칸 체크
-            // 확인할 input들의 id를 배열로 정리한다.
-            const required = ['id', 'password', 'confirm-password', 'name', 'phone'];
+            const requiredFields = [
+                { id: 'id', name: '아이디' },
+                { id: 'password', name: '비밀번호' },
+                { id: 'confirm-password', name: '비밀번호 확인' },
+                { id: 'name', name: '이름' },
+                { id: 'phone', name: '휴대폰 번호' }
+            ];
 
-            // for...of: 배열의 각 항목을 순서대로 꺼내서 반복한다.
-            for (const fieldId of required) {
-
-                // 해당 id를 가진 input의 값이 비어있으면
-                if (!document.getElementById(fieldId).value) {
-                    alert('필수 항목을 모두 입력해주세요.');
-                    e.preventDefault(); // 폼 제출 막기
-                    return; // 함수를 즉시 종료 (이후 검사 실행 안 함)
+            for (const field of requiredFields) {
+                if (!document.getElementById(field.id).value) {
+                    alert(`${field.name}을(를) 입력해주세요.`);
+                    e.preventDefault();
+                    return;
                 }
             }
 
-            // [검사 2] 비밀번호 일치 확인
-            // 비밀번호와 비밀번호 확인란의 값이 다르면 오류 처리
+            // [검사 2] 아이디 유효성 검사 (4~12자, 영문 소문자/숫자 조합)
+            const idRegExp = /^[a-z0-9]{4,12}$/;
+            if (!idRegExp.test(id)) {
+                alert('아이디는 4~12자의 영문 소문자와 숫자만 사용 가능합니다.');
+                e.preventDefault();
+                return;
+            }
+
+            // [검사 3] 비밀번호 유효성 검사 (8~20자, 영문/숫자 혼합)
+            const pwRegExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/;
+            if (!pwRegExp.test(pw)) {
+                alert('비밀번호는 8~20자의 영문과 숫자를 혼합하여 입력해주세요.');
+                e.preventDefault();
+                return;
+            }
+
+            // [검사 4] 비밀번호 일치 확인
             if (pw !== pwc) {
                 alert('비밀번호가 일치하지 않습니다.');
                 e.preventDefault();
                 return;
             }
 
-            // [검사 3] 필수 약관 체크 여부 확인
-            // class="terms-info"인 요소를 모두 가져온다. (약관 옆 "(필수)", "(선택)" 텍스트를 담은 요소)
+            // [검사 5] 이름 유효성 검사 (2자 이상)
+            if (name.length < 2) {
+                alert('이름을 2자 이상 입력해주세요.');
+                e.preventDefault();
+                return;
+            }
+
+            // [검사 6] 이메일 유효성 검사
+            const finalEmailDomain = emailDomainSelect === 'manual' ? emailManual : emailDomainSelect;
+            if (!emailId || !finalEmailDomain) {
+                alert('이메일을 올바르게 입력해주세요.');
+                e.preventDefault();
+                return;
+            }
+            const emailRegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailRegExp.test(emailId + '@' + finalEmailDomain)) {
+                alert('이메일 형식이 올바르지 않습니다.');
+                e.preventDefault();
+                return;
+            }
+
+            // [검사 7] 휴대폰 번호 유효성 검사 (숫자만, 10~11자리)
+            const phoneRegExp = /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/;
+            if (!phoneRegExp.test(phone)) {
+                alert('휴대폰 번호를 올바르게 입력해주세요. (숫자만 10~11자리)');
+                e.preventDefault();
+                return;
+            }
+
+            // [검사 8] 필수 약관 체크 여부 확인
             const termInfoList = document.querySelectorAll('.terms-info');
 
             for (const term of termInfoList) {
-
-                // 텍스트가 정확히 "(필수)"인 항목만 검사한다.
-                // trim(): 앞뒤 공백 제거 후 비교
                 if (term.textContent.trim() === '(필수)') {
-
-                    // 해당 약관 행(.term-row) 안의 .check-icon을 찾는다.
-                    // closest('.term-row'): 부모 요소 중 가장 가까운 .term-row를 찾는다.
                     const icon = term.closest('.term-row').querySelector('.check-icon');
-
-                    // checked 클래스가 없으면 → 아직 체크 안 된 상태
                     if (!icon.classList.contains('checked')) {
                         alert('필수 약관에 동의해주세요.');
                         e.preventDefault();
@@ -464,6 +507,9 @@
                     }
                 }
             }
+            
+            // 모든 검사 통과 시 가입 성공 메시지 (실제 서버 연동 대신 시뮬레이션)
+            alert('회원가입이 완료되었습니다!');
         });
     </script>
 </body>
