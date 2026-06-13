@@ -1,100 +1,218 @@
 body {
     background-color: #1E1E1E;
+    /* 어두운 배경색 설정 */
     font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    /* 마켓컬리가 사용하는 Pretendard 폰트를 먼저 사용하고, 로드 실패시 다른 시스템 폰트 사용 */
     margin: 0;
+    /* 기본 바깥 여백 제거 */
 }
 
 header {
     background-color: #141414;
+    /* 헤더 배경색 (매우 어두운 회색) */
     padding: 20px;
+    /* 헤더 내부 여백 */
     color: #FFFFFF;
+    /* 헤더 텍스트 색 (흰색) */
     text-align: center;
+    /* 헤더 텍스트 가운데 정렬 */
     border-bottom: 3px solid #484848;
+    /* 헤더 하단에 회색 선 추가 */
+}
+
+nav {
+    background-color: #010101;
+    /* 네비게이션 배경색 (거의 검정색) */
+    position: sticky;
+    /* 스크롤할 때 네비게이션이 상단에 고정 */
+    top: 0;
+    /* 상단에서 0px 떨어진 위치에 고정 */
+    left: 0;
+    /* 왼쪽에서 0px 떨어진 위치 */
+    display: flex;
+    /* 플렉스 박스 레이아웃 적용 (요소들을 가로로 배열) */
+    justify-content: space-between;
+    /* 요소들을 양쪽 끝으로 배치 (로고와 메뉴 분리) */
+    gap: 20px;
+    /* 자식 요소들 간 간격 */
+    padding: 12px 20px;
+    /* 상하 12px, 좌우 20px 내부 여백 */
+}
+
+.nav-ele {
+    display: flex;
+    /* 플렉스 박스 레이아웃 */
+    gap: 15px;
+    /* 요소들 간 간격 */
+}
+
+.nav-logo {
+    width: 50px;
+    /* 로고 아이콘의 너비 설정 */
+}
+
+.nav-ele div a {
+    text-decoration: none;
+    /* 링크의 밑줄 제거 */
+    color: #FFFFFF;
+    /* 링크 텍스트 색을 흰색으로 설정 */
+}
+
+.nav-ele {
+    display: flex;
+    /* 플렉스 박스 레이아웃 */
+    align-items: center;
+    /* 세로 중앙 정렬 */
 }
 
 .grid {
     display: grid;
+    /* CSS 그리드 레이아웃 사용 */
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    /* 각 그리드 아이템이 최소 300px 너비, 화면에 맞게 자동으로 배치 */
     gap: 1.5rem;
+    /* 그리드 아이템들 간 간격 (1.5rem = 24px) */
     padding: 20px;
+    /* 그리드 전체 패딩 */
 }
 
 .grid img {
     width: 100%;
+    /* 이미지 너비를 부모 영역 100%로 설정 */
     border-radius: 8px;
+    /* 이미지 모서리를 둥글게 처리 */
     background-color: #000000;
+    /* 이미지 로딩 중 배경색 (검정색) */
     cursor: pointer;
+    /* 마우스 커서를 손가락 모양으로 변경 (클릭 가능 표시) */
     object-fit: cover;
+    /* 이미지가 컨테이너를 가득 채우면서 비율 유지 */
     border: 1px solid #8e8e8e;
+    /* 이미지 테두리 추가 */
     transition: transform 0.3s ease;
+    /* 변환 효과를 0.3초에 걸쳐 부드럽게 적용 */
 }
 
 .grid img:hover {
     transform: scale(1.05);
+    /* 마우스를 올렸을 때 이미지를 1.05배 확대 (5% 축소) */
 }
 
 #modal {
     display: none;
+    /* 기본적으로 모달을 화면에 표시하지 않음 */
     position: fixed;
+    /* 화면에 고정된 위치 */
     top: 0;
+    /* 화면 상단에서 0px */
     left: 0;
+    /* 화면 왼쪽에서 0px */
     width: 100%;
+    /* 전체 너비 */
     height: 100%;
+    /* 전체 높이 */
     background-color: #00000080;
+    /* 반투명한 검정색 배경 (오버레이 효과) */
     z-index: 200;
+    /* 다른 요소들 위에 표시하기 위한 높은 z-index */
     justify-content: center;
+    /* 모달 콘텐츠를 가로 중앙 정렬 */
     align-items: center;
+    /* 모달 콘텐츠를 세로 중앙 정렬 */
     opacity: 0;
+    /* 기본 투명도 0 (보이지 않음) */
     transition: opacity 0.1s ease-in-out;
+    /* 투명도 변화를 0.1초에 걸쳐 부드럽게 적용 */
 }
 
 .modal-content {
     background-color: #1B1B21;
+    /* 모달 박스 배경색 (어두운 회색) */
     border-top: 23px solid #1B1B21;
+    /* 모달 상단에 보라색 라인 표시 */
     color: white;
+    /* 모달 텍스트 색 (흰색) */
     padding: 23px;
+    /* 모달 내부 여백 */
     border-radius: 20px;
+    /* 모달 모서리를 둥글게 처리 */
     position: relative;
+    /* 상대 위치 지정 (닫기 버튼 위치 결정 기준) */
     width: 80%;
+    /* 모달 너비를 화면의 80%로 설정 */
     height: 65vh;
+    /* 모달 높이를 뷰포트의 65%로 설정 */
     max-height: 580px;
+    /* 모달 최대 높이 제한 */
     max-width: 560px;
+    /* 모달 최대 너비 제한 */
     box-shadow: 0 4px 8px 0 hsla(0, 0%, 0%, 0.2);
+    /* 모달에 그림자 효과 추가 */
     overflow-y: scroll;
+    /* 세로 스크롤 가능하게 설정 */
     scrollbar-width: thin;
+    /* 스크롤바를 얇게 표시 */
     scrollbar-color: #ffffff33 #ffffff0d;
+    /* 스크롤바 색상 설정 (반투명 흰색) */
 }
+
 .close-button {
     position: sticky;
+    /* 모달 내용을 스크롤해도 닫기 버튼은 상단에 고정 */
     top: 0;
+    /* 상단에서 0px */
     float: right;
+    /* 오른쪽 끝에 띄우기 */
     font-size: 25px;
+    /* 닫기 버튼 아이콘 크기 */
     cursor: pointer;
+    /* 마우스 커서를 손가락 모양으로 변경 */
     z-index: 10;
+    /* 모달 콘텐츠 위에 표시 */
 }
 
 .modal-content img {
     width: 100%;
+    /* HTTP.cat 고양이 이미지가 모달 콘텐츠를 가득 채우도록 설정 */
     border-radius: 8px;
+    /* 이미지 모서리를 둥글게 처리 */
     border: 1px solid #8e8e8e;
+    /* 이미지 테두리 추가 */
 }
 
 .modal-content h2 {
     padding-bottom: 10px;
+    /* 제목 하단 여백 */
     border-bottom: 1px solid #5C615C;
+    /* 제목 아래 구분선 추가 */
 }
 
 .modal-content p {
     line-height: 1.6;
+    /* 설명 텍스트 줄 높이를 1.6배로 설정해서 가독성 향상 */
 }
 
 .comment-section {
     margin-top: 60px;
+    /* 댓글 섹션을 모달 내용 아래쪽에 배치 */
 }
 
 .comment-count {
     font-weight: 700;
+    /* 댓글 개수 텍스트를 굵게 표시 */
     margin-top: 15px;
+    /* 상단 여백 */
     padding-bottom: 10px;
+    /* 하단 내부 여백 */
     border-bottom: 1px solid #333333;
+    /* 하단 구분선 추가 */
+}
+
+.des {
+    margin: 15px 25px -3px 25px;
+    /* 상 우 하 좌 여백 설정 */
+    font-size: 14px;
+    /* 작은 글자 크기 */
+    color: #FFFFFF;
+    /* 텍스트 색 (흰색) */
 }

@@ -1,7 +1,12 @@
+/* HTTP 응답 코드 정보를 저장하는 배열 */
+/* 각 요소는 HTTP 상태 코드, 제목, 상세 설명을 가지고 있으며, 모달에서 화면에 표시될 데이터다. */
 const content = [
     {
+        /* HTTP 상태 코드 (숫자) */
         "code": 100,
+        /* 상태 코드 제목과 고양이 설명 */
         "title": "100 Continue - 계속 말해봐라냥!",
+        /* 상세한 설명 (마크업 없는 일반 텍스트) */
         "description": "지금까지 네가 보낸 요청의 앞부분은 아주 잘 받고 있다옹! 별다른 문제 없으니까 하던 얘기 마저 계속해봐라냥. 만약 데이터를 다 보냈다면 내가 곧바로 최종 응답을 줄 테니 조금만 기다려주면 된다옹."
     },
     {
@@ -391,33 +396,65 @@ const content = [
     }
 ]
 
+/* ======================== DOM 요소 선택 ======================== */
+/* 모달 전체 영역을 변수에 저장 (http.cat 이미지와 설명을 보여주는 팝업) */
 const modal = document.getElementById("modal");
+/* 모달에서 HTTP 상태 코드(예: 200 OK)를 표시할 영역 */
 const http_code = document.getElementById("code");
+/* 모달에서 HTTP 코드 설명을 표시할 영역 */
 const http_content = document.getElementById("http_content");
 
+/* ======================== 함수 정의 ======================== */
+/* 
+ * 함수명: getContentItem
+ * 목적: 입력받은 HTTP 코드 번호로 content 배열에서 해당하는 정보 객체를 찾아 반환
+ * 매개변수: content_http_code (찾을 HTTP 상태 코드 숫자)
+ * 반환값: 일치하는 content 객체, 없으면 null
+ */
 function getContentItem(content_http_code) {
+    /* content 배열의 모든 요소를 차례로 반복 순회 */
     for (let i = 0; i < content.length; i++) {
+        /* 배열의 i번째 요소의 code가 찾는 코드와 일치하면 그 요소를 반환 */
         if (content[i].code === content_http_code) {
             return content[i];
         }
     }
+    /* 일치하는 코드를 찾지 못한 경우 null 반환 */
     return null;
 }
 
+/* 
+ * 함수명: openModal
+ * 목적: 사용자가 그리드 아이템을 클릭했을 때 모달을 열고 HTTP 코드 정보를 표시
+ * 매개변수: code (클릭한 아이템의 HTTP 상태 코드)
+ */
 function openModal(code) {
+    /* 입력받은 코드에 해당하는 정보 객체를 getContentItem 함수로 찾기 */
     const item = getContentItem(code);
+    /* 해당하는 정보가 없으면 함수 실행 종료 */
     if (!item) {
         return;
     }
 
+    /* 모달의 display를 "flex"로 설정해서 화면에 표시 (플렉스 박스로 가운데 정렬) */
     modal.style.display = "flex";
+    /* 모달의 투명도(opacity)를 1로 설정해서 완전히 불투명하게 표시 */
     modal.style.opacity = 1;
+    /* HTTP.cat 공식 사이트에서 해당 코드의 고양이 이미지를 불러와 img 태그의 src에 설정 */
     document.querySelector(".modal-content img").src = "https://http.cat/images/" + code + ".jpg";
+    /* 모달에 HTTP 상태 코드 번호를 표시 (예: "200") */
     http_code.innerHTML = code;
+    /* 모달에 HTTP 상태 코드 제목과 상세 설명을 HTML 형식으로 표시 */
     http_content.innerHTML = `<h3>${item.title}</h3><p>${item.description}</p>`;
 }
 
+/* 
+ * 함수명: closeModal
+ * 목적: 사용자가 모달 닫기 버튼(X)을 클릭했을 때 모달을 닫음
+ */
 function closeModal() {
+    /* 모달의 display를 "none"으로 설정해서 화면에서 숨김 */
     modal.style.display = "none";
+    /* 모달의 투명도(opacity)를 0으로 설정해서 완전히 투명하게 만듦 (닫는 애니메이션 효과) */
     modal.style.opacity = 0;
 }
